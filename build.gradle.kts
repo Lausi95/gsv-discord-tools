@@ -23,7 +23,10 @@ dependencies {
   implementation("org.springframework.boot:spring-boot-starter-web")
   implementation("org.springframework.boot:spring-boot-starter-validation")
   implementation("org.springframework.boot:spring-boot-starter-actuator")
+  implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
   implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+
+  annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
 
   // Discord Bot Dependencies
   implementation("dev.kord:kord-core:0.13.1")
@@ -34,6 +37,7 @@ dependencies {
   implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0-RC")
 
   testImplementation("org.springframework.boot:spring-boot-starter-test")
+  testImplementation("com.tngtech.archunit:archunit:1.2.1")
 }
 
 tasks.withType<KotlinCompile> {
