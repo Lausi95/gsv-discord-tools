@@ -26,8 +26,8 @@ dependencies {
   implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 
   // Discord Bot Dependencies
-  implementation("dev.kord:kord-core:0.8.0")
-  implementation("com.kotlindiscord.kord.extensions:kord-extensions:1.5.6")
+  implementation("dev.kord:kord-core:0.13.1")
+  implementation("com.kotlindiscord.kord.extensions:kord-extensions:1.6.0")
 
   // Kotlin dependencies
   implementation("org.jetbrains.kotlin:kotlin-reflect")
@@ -45,4 +45,8 @@ tasks.withType<KotlinCompile> {
 
 tasks.withType<Test> {
   useJUnitPlatform()
+}
+
+tasks.bootJar {
+  archiveFileName = "application.jar"
 }

@@ -1,0 +1,20 @@
+name: build
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.ACTIONS_KEY }}
+      DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+      DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      DOCKER_IMAGE: lausi95/gsv-discord-tools:latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+      - run: docker build -t $DOCKER_IMAGE .
+      - run: docker push $DOCKER_IMAGE
+      - run: gh workflow run deploy.yml

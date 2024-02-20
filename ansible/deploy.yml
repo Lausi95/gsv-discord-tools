@@ -1,0 +1,30 @@
+---
+- name: Deploy
+  hosts: all
+  tasks:
+    - name: Application Directory
+      file:
+        path: ~/gsv-discord-tools
+        state: directory
+
+    - name: Update docker-compose.yml
+      copy:
+        src: files/docker-compose.yml
+        dest: ~/gsv-discord-tools/docker-compose.yml
+    - name: Update Mongo Env File
+      copy:
+        src: files/mongo.env
+        dest: ~/gsv-discord-tools/mongo.env
+    - name: Update Gsv-Discord-Tools Env File
+      copy:
+        src: files/gsv-discord-tools.env
+        dest: ~/gsv-discord-tools/gsv-discord-tools.env
+
+    - name: Pull Images
+      shell:
+        chdir: ~/gsv-discord-tools
+        cmd: docker compose pull
+    - name: Run Images
+      shell:
+        chdir: ~/gsv-discord-tools
+        cmd: docker compose up -d
