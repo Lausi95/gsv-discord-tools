@@ -11,7 +11,7 @@ class PlayerApplicationService(val playerRepository: PlayerRepository, val playe
   }
 
   fun addPlayer(summonerName: SummonerName, tagLine: TagLine): Player? {
-    return playerResolver.getPlayer(summonerName, tagLine)?.let { playerRepository.save(it) }
+    return playerResolver.getPlayer(summonerName, tagLine).let { playerRepository.save(it) }
   }
 
   fun deletePlayer(summonerName: SummonerName, tagLine: TagLine) {

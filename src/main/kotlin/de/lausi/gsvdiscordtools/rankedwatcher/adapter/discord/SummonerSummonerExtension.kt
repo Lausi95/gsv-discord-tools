@@ -4,12 +4,11 @@ import com.kotlindiscord.kord.extensions.commands.Arguments
 import com.kotlindiscord.kord.extensions.commands.converters.impl.user
 import com.kotlindiscord.kord.extensions.extensions.Extension
 import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand
-import de.lausi.gsvdiscordtools.discordbot.DiscordBotProperties
 import org.springframework.stereotype.Component
 
 @Component
 private class SummonerSummonerExtension(
-  private val discordBotProperties: DiscordBotProperties
+  private val properties: RankedWatcherDiscordProperties
 ): Extension() {
 
   override val name = "summoner-summoner"
@@ -18,7 +17,7 @@ private class SummonerSummonerExtension(
     publicSlashCommand(::SummonArgs) {
       name = "summon"
       description = "summons someone"
-      guild(discordBotProperties.guildId)
+      guild(properties.guildId)
 
       action {
         val target = arguments.target

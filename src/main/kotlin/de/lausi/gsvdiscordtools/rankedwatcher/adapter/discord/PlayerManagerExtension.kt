@@ -4,7 +4,6 @@ import com.kotlindiscord.kord.extensions.commands.Arguments
 import com.kotlindiscord.kord.extensions.commands.converters.impl.string
 import com.kotlindiscord.kord.extensions.extensions.Extension
 import com.kotlindiscord.kord.extensions.extensions.publicSlashCommand
-import de.lausi.gsvdiscordtools.discordbot.DiscordBotProperties
 import de.lausi.gsvdiscordtools.rankedwatcher.application.PlayerApplicationService
 import de.lausi.gsvdiscordtools.rankedwatcher.domain.model.player.SummonerName
 import de.lausi.gsvdiscordtools.rankedwatcher.domain.model.player.TagLine
@@ -13,7 +12,7 @@ import org.springframework.stereotype.Component
 @Component
 private class PlayerManagerExtension(
   val playerApplicationService: PlayerApplicationService,
-  val discordBotProperties: DiscordBotProperties,
+  val properties: RankedWatcherDiscordProperties,
 ) : Extension() {
 
   override val name = "player-manager"
@@ -22,7 +21,7 @@ private class PlayerManagerExtension(
     publicSlashCommand(::AddPlayerArgs) {
       name = "add_player"
       description = "Adds a player to the ranked watcher"
-      guild(discordBotProperties.guildId)
+      guild(properties.guildId)
 
       action {
         val summonerName = SummonerName(arguments.summonerName)
@@ -44,7 +43,7 @@ private class PlayerManagerExtension(
     publicSlashCommand(::RemovePlayerArgs) {
       name = "remove_player"
       description = "Removes a player from the ranked watcher"
-      guild(discordBotProperties.guildId)
+      guild(properties.guildId)
 
       action {
         val summonerName = SummonerName(arguments.summonerName)

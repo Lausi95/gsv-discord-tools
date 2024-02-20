@@ -11,7 +11,7 @@ private data class RiotPlayerResource(
 
 internal class RiotPlayerResolver(private val restTemplate: RestTemplate) : PlayerResolver {
 
-  override fun getPlayer(summonerName: SummonerName, tagLine: TagLine): Player? {
+  override fun getPlayer(summonerName: SummonerName, tagLine: TagLine): Player {
     val url = "/riot/account/v1/accounts/by-riot-id/${summonerName.value}/${tagLine.value}"
     val response = restTemplate.getForEntity(url, RiotPlayerResource::class.java)
 
@@ -20,6 +20,6 @@ internal class RiotPlayerResolver(private val restTemplate: RestTemplate) : Play
       Player(summonerId, summonerName, tagLine)
     }
 
-    return player
+    return requireNotNull(player)
   }
 }

@@ -25,5 +25,5 @@ interface PlayerRepository {
 
 interface PlayerResolver {
 
-  fun getPlayer(summonerName: SummonerName, tagLine: TagLine): Player?
+  fun getPlayer(summonerName: SummonerName, tagLine: TagLine): Player
 }

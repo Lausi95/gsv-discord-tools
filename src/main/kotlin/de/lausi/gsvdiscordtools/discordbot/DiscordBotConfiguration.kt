@@ -12,7 +12,6 @@ import org.springframework.context.event.EventListener
 @ConfigurationProperties("discord")
 data class DiscordBotProperties(
   val botToken: String,
-  val guildId: Long,
 )
 
 @Configuration
