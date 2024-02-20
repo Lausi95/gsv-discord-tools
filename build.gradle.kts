@@ -37,6 +37,7 @@ dependencies {
   implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0-RC")
 
   testImplementation("org.springframework.boot:spring-boot-starter-test")
+  testImplementation("org.mockito.kotlin:mockito-kotlin:5.2.1")
   testImplementation("com.tngtech.archunit:archunit:1.2.1")
 }
 
