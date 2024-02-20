@@ -9,7 +9,7 @@ private data class RiotPlayerResource(
   val tagLine: String,
 )
 
-internal class RiotPlayerResolver(val restTemplate: RestTemplate) : PlayerResolver {
+internal class RiotPlayerResolver(private val restTemplate: RestTemplate) : PlayerResolver {
 
   override fun getPlayer(summonerName: SummonerName, tagLine: TagLine): Player? {
     val url = "/riot/account/v1/accounts/by-riot-id/${summonerName.value}/${tagLine.value}"
