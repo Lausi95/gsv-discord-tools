@@ -6,6 +6,8 @@ services:
     restart: always
     networks: [gsv-network]
     env_file: [gsv-discord-tools.env]
+    ports:
+      - "8081:8080"
 
   database:
     image: mongo
