@@ -11,5 +11,5 @@ EXPOSE 8080
 
 COPY --from=builder /src/build/libs/application.jar ./application.jar
 
-ENTRYPOINT ["sh", "-c", "java", "-jar"]
-CMD ["application.jar"]
+ENTRYPOINT ["sh", "-c"]
+CMD ["java -jar application.jar"]
