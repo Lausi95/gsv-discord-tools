@@ -1,11 +1,11 @@
 riot:
-  api-key: $RIOT_API_KEY
+  api-key: ${RIOT_API_KEY}
   region: europe
 
 spring:
   data:
     mongodb:
       database: gsv-discord-tools
-      username: $MONGO_USERNAME
-      password: $MONGO_PASSWORD
-      host: $MONGO_HOST
+      username: ${MONGO_USERNAME}
+      password: ${MONGO_PASSWORD}
+      host: ${MONGO_HOST}
