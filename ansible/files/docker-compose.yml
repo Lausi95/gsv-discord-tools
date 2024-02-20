@@ -9,7 +9,7 @@ services:
     ports:
       - "8081:8080"
 
-  database:
+  mongo-db:
     image: mongo
     restart: always
     networks: [gsv-network]

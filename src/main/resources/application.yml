@@ -10,3 +10,8 @@ spring:
       username: ${MONGO_USERNAME}
       password: ${MONGO_PASSWORD}
       host: ${MONGO_HOST}
+
+logging:
+  level:
+    root: warn
+    de.lausi.gsvdiscordtools: info

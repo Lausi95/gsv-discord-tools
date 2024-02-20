@@ -27,4 +27,8 @@
     - name: Run Images
       shell:
         chdir: ~/gsv-discord-tools
-        cmd: docker compose up -d
+        cmd: docker compose up -d --remove-orphans
+
+    - name: Cleanup Docker
+      shell:
+        cmd: docker system prune --all -f
