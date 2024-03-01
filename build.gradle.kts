@@ -29,7 +29,6 @@ dependencies {
   annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
 
   // Discord Bot Dependencies
-  implementation("dev.kord:kord-core:0.13.1")
   implementation("com.kotlindiscord.kord.extensions:kord-extensions:1.6.0")
   implementation("club.minnced:discord-webhooks:0.8.4")
 
