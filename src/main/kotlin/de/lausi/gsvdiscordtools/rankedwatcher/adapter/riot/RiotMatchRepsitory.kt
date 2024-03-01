@@ -3,6 +3,7 @@ package de.lausi.gsvdiscordtools.rankedwatcher.adapter.riot
 import de.lausi.gsvdiscordtools.rankedwatcher.domain.model.match.*
 import de.lausi.gsvdiscordtools.rankedwatcher.domain.model.player.SummonerId
 import de.lausi.gsvdiscordtools.rankedwatcher.domain.model.player.SummonerName
+import org.slf4j.LoggerFactory
 import org.springframework.web.client.RestTemplate
 
 private data class MatchDto(
@@ -34,12 +35,19 @@ private data class ParticipantDto(
 
 class RiotMatchRepsitory(private val restTemplate: RestTemplate): MatchRepository {
 
-  override fun getLatestMatchIdsBySummonerId(summonerId: SummonerId, count: Int): List<MatchId> {
-    val url = "/lol/match/v5/matches/by-puuid/${summonerId.value}/ids?count=$count"
-    val response = restTemplate.getForEntity(url, Array<String>::class.java)
-    val matchIds = response.body?.map { MatchId(it) }
+  private val log = LoggerFactory.getLogger(RiotMatchRepsitory::class.java)
 
-    return requireNotNull(matchIds) { "Could not load matchIds by $summonerId. Repsonse is Empty." }
+  override fun getLatestMatchIdsBySummonerId(summonerId: SummonerId, count: Int): List<MatchId> {
+    try {
+      val url = "/lol/match/v5/matches/by-puuid/${summonerId.value}/ids?count=$count"
+      val response = restTemplate.getForEntity(url, Array<String>::class.java)
+      val matchIds = response.body?.map { MatchId(it) }
+
+      return requireNotNull(matchIds) { "Could not load matchIds by $summonerId. Repsonse is Empty." }
+    } catch (ex: Exception) {
+      log.warn("Riot API reponded with error: {}", ex.message)
+      return emptyList()
+    }
   }
 
   override fun getMatch(matchId: MatchId, summonerIds: List<SummonerId>): Match {
