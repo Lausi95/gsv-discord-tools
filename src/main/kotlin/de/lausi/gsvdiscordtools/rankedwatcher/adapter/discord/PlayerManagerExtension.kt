@@ -69,8 +69,7 @@ private class PlayerManagerExtension(
 
       action {
         respond {
-          content = playerApplicationService.getPlayers()
-            .joinToString("\n") { "${it.summonerName}#${it.tagLine}" }
+          content = playerApplicationService.getPlayers().joinToString("\n") { it.format() }
         }
       }
     }

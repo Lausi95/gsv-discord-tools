@@ -10,7 +10,12 @@ data class Player(
   val summonerId: SummonerId,
   val summonerName: SummonerName,
   val tagLine: TagLine,
-)
+) {
+
+  fun format(): String {
+    return "${summonerName.value}#${tagLine.value}"
+  }
+}
 
 interface PlayerRepository {
 
