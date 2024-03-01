@@ -61,6 +61,19 @@ private class PlayerManagerExtension(
         }
       }
     }
+
+    publicSlashCommand {
+      name = "list-players"
+      description = "Lists all players that are currently watched"
+      guild(properties.guildId)
+
+      action {
+        respond {
+          content = playerApplicationService.getPlayers()
+            .joinToString("\n") { "${it.summonerName}#${it.tagLine}" }
+        }
+      }
+    }
   }
 
   inner class AddPlayerArgs: Arguments() {
