@@ -11,8 +11,8 @@ import org.springframework.web.client.RestTemplate
 
 @ConfigurationProperties("riot")
 private data class RiotProperties(
-  val region: String,
-  val apiKey: String,
+  val apiHost: String,
+  val accessToken: String,
 )
 
 @Configuration
@@ -32,8 +32,8 @@ private class RiotConfiguration {
   @Bean
   fun riotRestTemplate(riotProperties: RiotProperties): RestTemplate {
     return RestTemplateBuilder()
-      .rootUri("https://${riotProperties.region}.api.riotgames.com")
-      .defaultHeader("X-Riot-Token", riotProperties.apiKey)
+      .rootUri(riotProperties.apiHost)
+      .defaultHeader("X-Riot-Token", riotProperties.accessToken)
       .build()
   }
 }

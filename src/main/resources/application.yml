@@ -4,10 +4,17 @@ discord:
     guild-id: ${DISCORD_GUILD_ID}
     webhook-url: ${DISCORD_CHANNEL_WEBHOOK_URL}
     avatar-url: ${DISCORD_AVATAR_URL}
+  server-control:
+    guild-id: ${DISCORD_GUILD_ID}
+    palworld-server-id: ${NITRADO_PALWORLD_SERVER_ID}
+
+nitrado:
+  api-host: https://api.nitrado.net
+  access-token: ${NITRADO_ACCESS_TOKEN}
 
 riot:
-  api-key: ${RIOT_API_KEY}
-  region: europe
+  api-host: https://europe.api.riotgames.com
+  api-key: ${RIOT_ACCESS_TOKEN}
 
 spring:
   data:
