@@ -30,7 +30,7 @@ private class PlayerManagerExtension(
         try {
           playerApplicationService.addPlayer(summonerName, tagLine)
           respond {
-            content = "Summoner with summoner name ${summonerName.value}#${summonerName.value} was added to the watcher!"
+            content = "Summoner with summoner name ${summonerName.value}#${tagLine.value} was added to the watcher!"
           }
         } catch (ex: Exception) {
           respond {
